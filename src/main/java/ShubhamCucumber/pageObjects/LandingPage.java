@@ -29,6 +29,9 @@ public class LandingPage {
     public void topDeals(){
         driver.findElement(topDeals).click();
     }
-    //textContextSetup.driver.findElement(By.cssSelector("a.cart-header-navlink[href=\"#/offers\"]")).click();
 
+    public String getTitleLandingPage()
+    {
+        return driver.getTitle();
+    }
 }
