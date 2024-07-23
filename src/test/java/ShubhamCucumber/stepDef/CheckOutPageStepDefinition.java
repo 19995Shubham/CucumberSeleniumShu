@@ -1,11 +1,10 @@
 package ShubhamCucumber.stepDef;
 
 import ShubhamCucumber.pageObjects.CheckOutPage;
-import ShubhamCucumber.pageObjects.OffersPage;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import org.testng.Assert;
-import utils.TextContextSetup;
+import ShubhamCucumber.utils.TextContextSetup;
 
 public class CheckOutPageStepDefinition {
     TextContextSetup textContextSetup;

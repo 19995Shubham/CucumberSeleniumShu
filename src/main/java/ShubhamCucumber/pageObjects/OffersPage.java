@@ -3,16 +3,16 @@ package ShubhamCucumber.pageObjects;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.FindBy;
-import org.testng.Assert;
 
 import java.util.List;
 
 public class OffersPage {
     WebDriver driver;
+    GenericUtil genericUtil;
     
-   public OffersPage(WebDriver driver){
+   public OffersPage(WebDriver driver, GenericUtil genericUtil){
        this.driver = driver;
+       this.genericUtil = genericUtil;
    }
 
    By search = By.xpath("//input[@id='search-field' and @type='search']");

@@ -7,10 +7,12 @@ import org.openqa.selenium.WebDriver;
 public class CheckOutPage {
 
     WebDriver driver;
+    GenericUtil genericUtil;
 
 
-    public CheckOutPage(WebDriver driver){
+    public CheckOutPage(WebDriver driver,GenericUtil genericUtil){
         this.driver = driver;
+        this.genericUtil = genericUtil;
     }
 
     By cartBag = By.cssSelector("[alt='Cart']");
@@ -21,23 +23,24 @@ public class CheckOutPage {
 
 
 
-    public void CheckoutItems() throws InterruptedException {
+    public void CheckoutItems()  {
+        genericUtil.waitForElementToAppear(cartBag);
         driver.findElement(cartBag).click();
-
-        Thread.sleep(4000);
+        genericUtil.waitForElementToAppear(checkOutButton);
         driver.findElement(checkOutButton).click();
-        Thread.sleep(4000);
+
     }
 
     public Boolean VerifyPromoBtn()
     {
+        genericUtil.waitForElementToAppear(promoBtn);
         return driver.findElement(promoBtn).isDisplayed();
     }
 
     public Boolean VerifyPlaceOrder()
     {
+        genericUtil.waitForElementToAppear(placeOrder);
         return driver.findElement(placeOrder).isDisplayed();
     }
-
 
 }

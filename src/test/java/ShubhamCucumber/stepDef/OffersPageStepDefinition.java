@@ -5,14 +5,8 @@ import ShubhamCucumber.pageObjects.LandingPage;
 import ShubhamCucumber.pageObjects.OffersPage;
 import io.cucumber.java.en.Then;
 
-import org.openqa.selenium.By;
-
 import org.testng.Assert;
-import utils.TextContextSetup;
-
-import java.util.Iterator;
-import java.util.Set;
-
+import ShubhamCucumber.utils.TextContextSetup;
 
 
 public class OffersPageStepDefinition {
@@ -38,7 +32,7 @@ public class OffersPageStepDefinition {
     public void switchOfferPage() throws InterruptedException {
         offersPage.getTopDeals();
         Thread.sleep(5000);
-        textContextSetup.genericUtils.switchPageToChildWindow();
+        textContextSetup.genericUtil.switchPageToChildWindow();
     }
 
     @Then("Validate productName matches the offerPage with landingPage")

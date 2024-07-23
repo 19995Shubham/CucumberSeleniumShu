@@ -1,17 +1,13 @@
 package ShubhamCucumber.stepDef;
 
 import ShubhamCucumber.pageObjects.LandingPage;
-import ShubhamCucumber.pageObjects.PageObjectManager;
+import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 
 import io.cucumber.java.en.When;
 
-import org.openqa.selenium.By;
-
-import org.openqa.selenium.chrome.ChromeDriver;
-
 import org.testng.Assert;
-import utils.TextContextSetup;
+import ShubhamCucumber.utils.TextContextSetup;
 
 
 
@@ -39,6 +35,12 @@ public class LandingPageStepDefinition {
         textContextSetup.landingPageProductName = landingPage.getProductName();
         textContextSetup.productText = shortName;
         System.out.println("i searched for productName "+ textContextSetup.productText + " and extracted the text " + textContextSetup.landingPageProductName);
+    }
+
+    @And("^added (.+) selected item into the cart$")
+    public void added_3_selected_item_into_the_cart(int quantity){
+        landingPage.incrementQuantity(quantity);
+        landingPage.addToCart();
     }
 
 }

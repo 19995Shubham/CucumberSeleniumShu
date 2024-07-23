@@ -1,4 +1,4 @@
-package utils;
+package ShubhamCucumber.pageObjects;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -34,7 +34,7 @@ public class GenericUtil {
     }
 
     public void waitForElementToAppear(By findBy) {
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
         wait.until(ExpectedConditions.visibilityOfElementLocated(findBy));
     }
 }

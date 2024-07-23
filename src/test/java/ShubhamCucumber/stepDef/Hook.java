@@ -1,7 +1,7 @@
 package ShubhamCucumber.stepDef;
 
 import io.cucumber.java.After;
-import utils.TextContextSetup;
+import ShubhamCucumber.utils.TextContextSetup;
 import java.io.IOException;
 
 public class Hook {
