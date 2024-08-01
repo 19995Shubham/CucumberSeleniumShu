@@ -9,27 +9,42 @@ import java.util.Properties;
 
 public class TestBase {
 
-    public WebDriver driver;
+    private static final ThreadLocal<WebDriver> driver = new ThreadLocal<>();
 
-    public WebDriver WebDriverManager()throws IOException {
 
-        FileInputStream fis = new FileInputStream(System.getProperty("user.dir")+"/src/test/resources/global.properties");
-        Properties properties = new Properties();
-        properties.load(fis);
-        String url = properties.getProperty("QAURl");
-        String browserName = properties.getProperty("browser");
+    public  WebDriver WebDriverManager() throws IOException {
+        if (driver.get() == null) {
+           // File fls = new File("src/test/resources/global.properties");
+            FileInputStream fis = new FileInputStream(System.getProperty("user.dir") + "/src/test/resources/global.properties");
+            //FileInputStream fis = new FileInputStream(fls);
+            Properties properties = new Properties();
+            properties.load(fis);
+            String url = properties.getProperty("QAURl");
+            String browserName = properties.getProperty("browser");
 
-        if(url == null || browserName == null){
-            throw new RuntimeException("Check global properties files");
-        }
+            if (browserName.equalsIgnoreCase("Chrome")) {
+                WebDriver webDriver = new ChromeDriver();
+                driver.set(webDriver);
+                  webDriver.manage().window().maximize();
+                  webDriver.manage().deleteAllCookies();
+                  webDriver.get(url);
 
-        if(browserName.equalsIgnoreCase("Chrome")) {
-            if (driver == null) {
-                driver = new ChromeDriver();
-                driver.get(url);
-                driver.manage().window().maximize();
             }
         }
-        return driver;
+       return getDriver();
     }
+
+    public synchronized WebDriver getDriver() throws IOException {
+        return driver.get();
+    }
+
+    public void removeDriver() throws IOException {
+        if (getDriver() != null) {
+            getDriver().quit();
+            driver.remove();
+        }
+    }
+
+
+
 }

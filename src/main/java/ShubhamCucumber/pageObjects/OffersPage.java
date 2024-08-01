@@ -17,13 +17,14 @@ public class OffersPage {
 
    By search = By.xpath("//input[@id='search-field' and @type='search']");
    By productName = By.xpath("//tbody/tr");
-    By topDeals = By.cssSelector("a.cart-header-navlink[href=\"#/offers\"]");
+   By topDeals = By.cssSelector("a.cart-header-navlink[href=\"#/offers\"]");
 
     public void getTopDeals(){
         driver.findElement(topDeals).click();
     }
 
    public void searchItem(String productText){
+       driver.findElement(search).clear();
        driver.findElement(search).sendKeys(productText);
    }
 

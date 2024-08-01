@@ -1,0 +1,69 @@
+private static final ThreadLocal<WebDriver> driver = new ThreadLocal<>();
+
+ThreadLocal<WebDriver>: This creates a thread-local variable for the WebDriver instance.
+Each thread that accesses this variable gets its own independently initialized copy of the
+WebDriver.
+This ensures that tests running in parallel threads do not interfere with each other by
+sharing the same WebDriver instance.
+
+/////////////////////////////////////////////////////////////////////////////////////////////////
+public WebDriver WebDriverManager() throws IOException {
+    if (driver.get() == null) {
+        File fls = new File("src/test/resources/global.properties");
+        FileInputStream fis = new FileInputStream(fls);
+        Properties properties = new Properties();
+        properties.load(fis);
+        String url = properties.getProperty("QAURl");
+        String browserName = properties.getProperty("browser");
+
+        if (browserName.equalsIgnoreCase("Chrome")) {
+            WebDriver webDriver = new ChromeDriver();
+            driver.set(webDriver);
+            webDriver.manage().window().maximize();
+            webDriver.manage().deleteAllCookies();
+            webDriver.get(url);
+        }
+    }
+    return getDriver();
+}
+Check Initialization: if (driver.get() == null) checks if the WebDriver is not yet initialized
+for the current thread.
+Load Properties: It loads properties from global.properties file which contains configuration
+ like URL and browser type.
+Initialize WebDriver:
+If the browser specified in the properties is "Chrome", it creates a new instance of ChromeDriver.
+It sets this WebDriver instance to the ThreadLocal variable.
+It then maximizes the browser window, deletes all cookies, and navigates to the specified URL.
+Return WebDriver: Returns the WebDriver instance for the current thread by calling getDriver().
+
+
+
+//////////////////////////////////////////////////////////////////////////////////////////////
+public synchronized WebDriver getDriver() throws IOException {
+    return driver.get();
+}
+Purpose: To retrieve the WebDriver instance associated with the current thread.
+Synchronized: This ensures thread safety when multiple threads try to access this method simultaneously.
+Return: It returns the WebDriver instance for the current thread using driver.get().
+
+Thread Safety: By making this method synchronized, it ensures that if multiple threads are accessing this
+method simultaneously, only one thread can execute it at a time. This can be crucial in a multi-threaded
+environment where you want to avoid potential race conditions or inconsistencies.
+
+Abstraction: It provides a clean and abstract way to access the WebDriver instance. By using
+getDriver(), you encapsulate the retrieval of the WebDriver instance, making it easier to
+manage or modify the underlying implementation if needed.
+
+
+
+/////////////////////////////////////////////////////////////////////////////////////////////////
+public void removeDriver() throws IOException {
+    if (getDriver() != null) {
+        getDriver().quit();
+        driver.remove();
+    }
+}
+Check if Driver is Initialized: It checks if the WebDriver instance is initialized for the current thread.
+Quit WebDriver: If initialized, it calls quit() on the WebDriver to close the browser and end the WebDriver session.
+Remove Driver: Finally, it removes the WebDriver instance from the ThreadLocal variable using driver.remove().
+

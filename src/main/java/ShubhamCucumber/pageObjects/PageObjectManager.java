@@ -22,18 +22,24 @@ public class PageObjectManager {
 
 
     public LandingPage getLandingPage(){
-         landingPage = new LandingPage(driver,genericUtil);
+        if(landingPage == null){
+            landingPage = new LandingPage(driver,genericUtil);
+        }
          return landingPage;
     }
 
 
     public OffersPage getOffersPage(){
-        offersPage = new OffersPage(driver,genericUtil);
+        if (offersPage == null){
+            offersPage = new OffersPage(driver,genericUtil);
+        }
         return offersPage;
     }
 
     public CheckOutPage getCheckOutPage(){
-        checkOutPage = new CheckOutPage(driver,genericUtil);
+        if (checkOutPage == null){
+            checkOutPage = new CheckOutPage(driver,genericUtil);
+        }
         return checkOutPage;
     }
 }

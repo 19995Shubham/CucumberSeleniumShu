@@ -36,8 +36,13 @@ public class OffersPageStepDefinition {
     }
 
     @Then("Validate productName matches the offerPage with landingPage")
-    public void validateProductNameMatchesTheOfferPageWithLandingPage() {
+    public void validateProductNameMatchesTheOfferPageWithLandingPage() throws InterruptedException {
 
         Assert.assertEquals(textContextSetup.offerPageProductName, textContextSetup.landingPageProductName);
+        Thread.sleep(5000);
+        textContextSetup.genericUtil.switchPageToParentWindow();
+        Thread.sleep(5000);
+
+
     }
 }
