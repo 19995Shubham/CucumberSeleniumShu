@@ -7,7 +7,7 @@ import org.openqa.selenium.WebDriver;
 import java.io.IOException;
 
 
-public class TextContextSetup {
+public class TextContextSetup extends TestBase {
 
     public WebDriver driver;
     public String landingPageProductName;
@@ -15,15 +15,13 @@ public class TextContextSetup {
     public String productText;
     public PageObjectManager pageObjectManager;
     public GenericUtil genericUtil;
-    public TestBase testbase;
+    public TestBase testBase;
 
-
-    public TextContextSetup() throws IOException
-    {
-        testbase = new TestBase();
-        genericUtil = new GenericUtil(testbase.WebDriverManager());
-        pageObjectManager = new PageObjectManager(testbase.WebDriverManager(),genericUtil);
-
+    public TextContextSetup() throws IOException {
+       testBase = new TestBase();
+       driver = testBase.WebDriverManager();
+        genericUtil = new GenericUtil(driver);
+        pageObjectManager = new PageObjectManager(driver, genericUtil);
     }
 
 }

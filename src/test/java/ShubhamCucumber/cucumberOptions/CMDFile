@@ -1,0 +1,5 @@
+mvn test -Dcucumber.filter.tags=@PlaceOrder (To parameter the mvn from cmd
+
+java -jar jenkins.war httpPort-9090  launch
+
+

@@ -1,6 +1,7 @@
 Feature: Place the order for a product
 
-  Scenario Outline: Search experience with both home and offer page
+  @PlaceOrder
+  Scenario Outline: CheckOut Scenario
     Given User is on Greenkart landing page
     When  User searched with shortname <Name> and extracted actual result
     And   added 3 selected item into the cart
@@ -11,3 +12,4 @@ Feature: Place the order for a product
     |Name|
     |Tom |
     |Pot |
+

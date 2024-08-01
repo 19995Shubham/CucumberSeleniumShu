@@ -20,6 +20,7 @@ public class LandingPage {
     By addToCart = By.cssSelector(".product-action button");
 
     public void searchItem(String name){
+        driver.findElement(search).clear();
         driver.findElement(search).sendKeys(name);
     }
 
@@ -27,6 +28,7 @@ public class LandingPage {
         driver.findElement(search).getText();
     }
     public String  getProductName(){
+        //driver.findElement(productName).clear();
        String landingPageProductName =  driver.findElement(productName).getText().split(" ")[0].trim();
        return landingPageProductName;
     }

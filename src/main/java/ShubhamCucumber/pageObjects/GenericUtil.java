@@ -28,6 +28,15 @@ public class GenericUtil {
         driver.switchTo().window(childWindow);
     }
 
+    public void switchPageToParentWindow(){
+        Set<String> s1 = driver.getWindowHandles();
+
+        Iterator<String> it = s1.iterator();
+        String parentWindow = it.next();
+        String childWindow = it.next();
+        driver.switchTo().window(parentWindow);
+    }
+
     public void waitForWebElementToAppear(WebElement findBy) {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
         wait.until(ExpectedConditions.visibilityOf(findBy));
@@ -36,5 +45,14 @@ public class GenericUtil {
     public void waitForElementToAppear(By findBy) {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
         wait.until(ExpectedConditions.visibilityOfElementLocated(findBy));
+    }
+
+    public void pageRefresh()
+    {
+        driver.navigate().refresh();
+    }
+
+    public void navigateBack(){
+        driver.navigate().back();
     }
 }

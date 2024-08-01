@@ -21,6 +21,8 @@ public class CheckOutPageStepDefinition {
     public void verifyUserHasAbilityToEnterPromoCodeAndPlaceTheOrder() {
         Assert.assertTrue(checkOutPage.VerifyPromoBtn());
         Assert.assertTrue(checkOutPage.VerifyPlaceOrder());
+        textContextSetup.genericUtil.pageRefresh();
+        textContextSetup.genericUtil.navigateBack();
     }
 
     @Then("^User proceeds to Checkout and validate the (.+) items in checkout page$")
