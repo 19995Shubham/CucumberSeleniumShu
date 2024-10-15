@@ -9,9 +9,15 @@ import org.testng.annotations.DataProvider;
 
 @CucumberOptions(features = "src/test/java/ShubhamCucumber/feature",glue = "ShubhamCucumber/stepDef",
         monochrome = true, tags = "@PlaceOrder or @SearchOrder",
-        plugin = {"html:target/cucumber.html","json:target/cucumber.json",
+        plugin = {"html:target/cucumber.html", "json:target/cucumber.json",
                 "com.aventstack.extentreports.cucumber.adapter.ExtentCucumberAdapter:",
-                "rerun:target/failed_scenarios.text"})
+        "rerun:target/failed_scenarios.txt"})
+
+//"html:target/cucumber.html", "json:target/cucumber.json",
+//"com.aventstack.extentreports.cucumber.adapter.ExtentCucumberAdapter:",
+//"rerun:target/failed_scenarios.txt"
+//there is issue in Plugin for classnotfounddef
+
 public class TestNgTestRunner extends AbstractTestNGCucumberTests {
 
     @Override

@@ -7,7 +7,7 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.Properties;
 
-public class TestBase {
+public  class TestBase {
 
     private static final ThreadLocal<WebDriver> driver = new ThreadLocal<>();
 
@@ -16,7 +16,7 @@ public class TestBase {
         if (driver.get() == null) {
            // File fls = new File("src/test/resources/global.properties");
             FileInputStream fis = new FileInputStream(System.getProperty("user.dir") + "/src/test/resources/global.properties");
-            //FileInputStream fis = new FileInputStream(fls);
+           // FileInputStream fis = new FileInputStream(fls);
             Properties properties = new Properties();
             properties.load(fis);
             String url = properties.getProperty("QAURl");

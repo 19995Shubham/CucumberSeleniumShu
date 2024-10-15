@@ -14,7 +14,8 @@ import java.io.IOException;
 public class Hook {
 
     public TextContextSetup textContextSetup;
-    public Hook(TextContextSetup textContextSetup){
+
+    public Hook(TextContextSetup textContextSetup) {
         this.textContextSetup = textContextSetup;
     }
 
@@ -24,16 +25,18 @@ public class Hook {
 //       // TestBase.removeDriver();
 //    }
 
+
     @AfterStep
-    public void addScreenshot(Scenario scenario) throws IOException {
-        WebDriver driver = textContextSetup.driver;
-
+    public void AddScreenshot(Scenario scenario) throws IOException {
+        WebDriver driver = textContextSetup.testBase.WebDriverManager();
         if (scenario.isFailed()) {
+            //screenshot
             File sourcePath = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
-            //Apache common io to convert file type to byte type
-            byte [] fileContent = FileUtils.readFileToByteArray(sourcePath);
-            scenario.attach(fileContent,"image/png", "image");
-        }
-    }
+            byte[] fileContent = FileUtils.readFileToByteArray(sourcePath);
+            scenario.attach(fileContent, "image/png", "image");
 
+        }
+
+    }
 }
+

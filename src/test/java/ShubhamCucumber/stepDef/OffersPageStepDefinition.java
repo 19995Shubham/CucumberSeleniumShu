@@ -42,7 +42,5 @@ public class OffersPageStepDefinition {
         Thread.sleep(5000);
         textContextSetup.genericUtil.switchPageToParentWindow();
         Thread.sleep(5000);
-
-
     }
 }

@@ -3,6 +3,7 @@ package ShubhamCucumber.pageObjects;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -54,5 +55,12 @@ public class GenericUtil {
 
     public void navigateBack(){
         driver.navigate().back();
+    }
+
+    public void mouseHover(By findBy){
+        WebElement element = driver.findElement(findBy);
+        Actions action = new Actions(driver);
+        action.moveToElement(element).build().perform();
+        action.click().build().perform();
     }
 }

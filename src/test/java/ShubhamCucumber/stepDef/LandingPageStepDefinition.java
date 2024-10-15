@@ -23,7 +23,6 @@ public class LandingPageStepDefinition {
 
     @Given("User is on Greenkart landing page")
     public void user_is_on_greenkart_landing_page() {
-
         Assert.assertTrue(landingPage.getTitleLandingPage().contains("GreenKart"));
     }
 
